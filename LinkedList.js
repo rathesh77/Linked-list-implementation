@@ -2,12 +2,22 @@ const LinkedListNode = require("./LinkedListNode")
 
 class LinkedList {
 
+    /**
+     * @constructor
+     * @description constructs a new list with head and tail initialized to null. length is 0
+     */
     constructor() {
         this.head = null
         this.tail = null
         this.length = 0
     }
 
+    /**
+    * 
+    * @param {Number} data 
+    * @returns null
+    * @description appends the list a new item
+    */
     insert(data) {
         const node = new LinkedListNode(data)
         if (!this.head) {
@@ -22,6 +32,12 @@ class LinkedList {
         this.length++
     }
 
+    /**
+     * 
+     * @param {Number} data 
+     * @returns null
+     * @description removes an item from the list
+     */
     remove(data) {
         if (this.head.data == data) {
             if (this.head.next == null)
