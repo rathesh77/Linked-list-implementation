@@ -35,6 +35,7 @@ class LinkedList {
     /**
      * 
      * @param {Number} data 
+     * @param {LinkedListNode} head
      * @returns null
      * @description removes an item from the list
      */
