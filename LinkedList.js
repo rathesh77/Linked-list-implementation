@@ -38,41 +38,47 @@ class LinkedList {
      * @returns null
      * @description removes an item from the list
      */
-    remove(data) {
-        if (this.head == null)
+    remove(data, head) {
+        // si la liste est vide ou on ne fournit pas de donnée, on arrête
+        if (this.head == null || data == null)
             return
-        if (this.head.data == data) {
-            if (this.head.next == null)
-                this.tail = this.head = null
-            else {
-                this.head = this.head.next
-                this.head.previous = null
-            }
+        if (head == null)
+            head = this.head
+
+        if (head.data == data) {
             this.length--
-            return
-        }
-        let nextNode = this.head.next, prevNode = this.head
-        if(nextNode == null)
-            return
-        do {
-            if (nextNode.data == data) {
-                this.length--
-                if (nextNode.next == null) {
-                    prevNode.next = null
-                    this.tail.data = prevNode.data
-                    this.tail.previous = prevNode.previous
+            // si on a trouvé la valeur
+            //  on doit verifier si
+            //  si on va supprimer le dernier element
+            //  si on va supprimer l'avant dernier element
+            //  si on supprime un element quelconque
+            if (head.next != null) {
+                // si on ne supprime pas le dernier element
+                head.data = head.next.data
+                if (head.next.next != null) {
+                    // si on ne supprime pas l'avant dernier
+                    head.next = head.next.next
                 } else {
-                    nextNode.data = nextNode.next.data
-                    nextNode.next = nextNode.next.next
-                    if (nextNode.next == null) {
-                        this.tail.previous = nextNode.previous
-                    }
+                    head.next = null
+                    this.tail = head
                 }
-                break
             }
-            prevNode = nextNode
-            nextNode = nextNode.next
-        } while (nextNode != null)
+            else if (head.previous == null) {
+                this.head = this.tail = null
+            }
+        }
+        else if (head.next != null) {
+            // si le prochain element n'est pas NULL
+            // sinon on appel remove(data, head.next)
+            if (head.next.next == null && head.next.data == data) {
+                this.tail = head
+                head.next = null
+                this.length--
+            }
+            else {
+                this.remove(data, head.next)
+            }
+        }
     }
 
 }
