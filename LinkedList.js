@@ -48,10 +48,10 @@ class LinkedList {
         if (head.data == data) {
             this.length--
             // si on a trouvé la valeur
-            //  on doit verifier si
-            //  si on va supprimer le dernier element
-            //  si on va supprimer l'avant dernier element
-            //  si on supprime un element quelconque
+            //  on doit verifier 
+            //      si on va supprimer le dernier element
+            //      si on va supprimer l'avant dernier element
+            //      si on supprime un element quelconque
             if (head.next != null) {
                 // si on ne supprime pas le dernier element
                 head.data = head.next.data
@@ -80,6 +80,44 @@ class LinkedList {
             }
         }
     }
+
+    /* NON-RECURSIVE VERSION OF REMOVE METHOD
+    remove(data) {
+        if (this.head == null || data == null)
+            return
+        if (this.head.data == data) {
+            if (this.head.next == null)
+                this.tail = this.head = null
+            else {
+                this.head = this.head.next
+                this.head.previous = null
+            }
+            this.length--
+            return
+        }
+        let nextNode = this.head.next, prevNode = this.head
+        do {
+            if (nextNode.data == data) {
+                this.length--
+                if (nextNode.next == null) {
+                    this.tail = prevNode
+                    this.tail.next = null
+                } else {
+                    nextNode.data = nextNode.next.data
+                    if (nextNode.next.next == null) {
+                        this.tail = nextNode
+                        nextNode.next = null
+                    }
+                    else {
+                        nextNode.next = nextNode.next.next
+                    }
+                }
+                break
+            }
+            prevNode = nextNode
+            nextNode = nextNode.next
+        } while (nextNode != null)
+    }*/
 
 }
 

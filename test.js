@@ -29,14 +29,9 @@ describe('basic tests', function () {
             list.remove(element)
             elements.splice(index, 1)
         }
-        const index = elements.length-1
-        const element = elements[index]
-        list.remove(element)
-        elements.splice(index, 1)
         let head = list.head
         let previous = null
         let i = 1
-        console.log(elements)
         while (head && head.next != null) {
             if (head.data != elements[i] || head.previous != elements[i - 1])
                 return false
@@ -53,8 +48,7 @@ describe('basic tests', function () {
         return true
     }
     function addElements(list) {
-        for (let i = 1; i <= 10; i++) {
-        }
+
     }
     it('insertion', () => {
         init()
@@ -71,37 +65,3 @@ describe('basic tests', function () {
 
     })
 })
-
-
-/*
-RECURSIVE VERSION OF REMOVE METHOD
-remove(data, head) {
-        if(!data)
-            return
-        if (head == null)
-            head = this.head
-        if( head == null)
-        return
-        if (head.data == data) {
-            if (head.next != null) {
-                head.data = head.next.data
-                head.next = head.next.next
-                if(head.next == null) {
-                    this.tail = head
-                }
-            }
-            else if(head.previous == null) {
-                this.head = null
-                this.tail = null
-            }
-
-        } else if (head.next != null) {
-            this.remove(data, head.next)
-            if (head.next.data == data) {
-                head.next = null
-                this.tail = head
-            }
-        }
-
-    }
-*/
