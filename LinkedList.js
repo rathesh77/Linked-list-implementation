@@ -39,6 +39,8 @@ class LinkedList {
      * @description removes an item from the list
      */
     remove(data) {
+        if (this.head == null)
+            return
         if (this.head.data == data) {
             if (this.head.next == null)
                 this.tail = this.head = null
@@ -50,6 +52,8 @@ class LinkedList {
             return
         }
         let nextNode = this.head.next, prevNode = this.head
+        if(nextNode == null)
+            return
         do {
             if (nextNode.data == data) {
                 this.length--
